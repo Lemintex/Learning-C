@@ -8,7 +8,7 @@ int main() {
     char string[LIMIT];
     char c;
     for (int i = 0; i < LIMIT - 1; i++) {
-        if ((c=getchar())=='\n') {
+        if ((c=getchar()) ==                '\n') {
             break;
         }
         string[i] = c;
