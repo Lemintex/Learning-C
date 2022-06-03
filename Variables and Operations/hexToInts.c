@@ -2,7 +2,15 @@
 
 #define LIMIT 100
 
-void convertHex(char c[], int values[]);
+/*
+    this program takes an input string of hex values
+    and prints the integer values
+
+    eg:0x100x31 = 16, 49
+    
+*/
+
+int convertHex(char c[], int values[]);
 int hexValue(char c);
 enum STATE {PREFIX, FIRST, SECOND};
 
@@ -14,12 +22,17 @@ int main() {
     for (int i = 0; (input = getchar()) != '\n'; i++) {
         hex[i] = input;
     }
-    convertHex(hex, values);
-    printf("%d", values);
+    int len = convertHex(hex, values);
+    for (int i = 0;i < len; i++) {
+        if (i > 0) {
+            printf(", ");
+        }
+        printf("%d", values[i]);
+    }
 }
 
-void convertHex(char c[], int values[]) {
-    int state = PREFIX;
+int convertHex(char c[], int values[]) {
+    int state = PREFIX; 
     int v = 0;
     int val = 0;
     for (int i = 0; c[i] != '\n'; i++) {
@@ -34,26 +47,37 @@ void convertHex(char c[], int values[]) {
             break;
         
         case FIRST:
-            val += hexValue(c[i]);
-            state = SECOND;
+            int num = hexValue(c[i]);
+            if (num >= 0) {
+                val += num;
+                state = SECOND;
+            }
+            else {
+                state = PREFIX;
+            }
             break;
 
         case SECOND:
-            val = val * 16 + hexValue(c[i]);
-            values[v++] = val;
-            val = 0;
+            int num = hexValue(c[i]);
+            if (num >= 0) {
+                val = val * 16 + num;
+                values[v++] = val;
+                val = 0;
+            }
             state = PREFIX;
+ 
             break;
         
         default:
             break;
         }
     }
+    return v;
 }
 
 int hexValue(char c) {
     if (c >= 'A' && c <= 'F') {
-        c = c - 'A' + 'a';
+        return c - 'A' + 10;
     }
     if (c >= 'a' && c <= 'f') {
         return c - 'a' + 10;
