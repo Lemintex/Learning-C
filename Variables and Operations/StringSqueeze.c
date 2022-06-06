@@ -25,5 +25,4 @@ void squeeze(char s1[], char s2[], char s3[]) {
             s3[index++] = s1[i];
         }
     }
-    printf("done");
 }
