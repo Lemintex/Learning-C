@@ -1,13 +1,19 @@
+/*
+    NOTE: since visual studio code takes console input as a single line
+    this program will use ',' to indicate a new line
+    
+    EXAMPLE: Did we take it too far?,Take it too far?,Did We chase the rabbit into wonderland? 
+*/
 #include <stdio.h>
 #define MAXLINE 1000 /* maximum input line length */
 
 int getline(char line[], int max);
 int strindex(char source[], char searchfor[]);
 
-char pattern[] = "ould"; /* pattern to search for */
+char pattern[] = "it"; /* pattern to search for */
 /* find all lines matching pattern */
 
-main()
+int main()
 {
     char line[MAXLINE];
     int found = 0;
@@ -16,6 +22,7 @@ main()
         if (strindex(line, pattern) >= 0)
         {
             printf("%s", line);
+            printf(" | ");
             found++;
         }
     }
@@ -27,11 +34,11 @@ int getline(char s[], int lim)
 {
     int c, i;
     i = 0;
-    while (--lim > 0 && (c=getchar()) != EOF && c != '\n') {
-        s[i++] = c;
+    while (--lim > 0 && (c = getchar()) != EOF && c != ',') {
+        s[i] = c;
+        i++;
     }
-    if (c == '\n') {
-        s[i++] = c;
+    if (c == ',') {// do not include ','
         s[i] = '\0';
     }
     return i;
@@ -41,12 +48,15 @@ int getline(char s[], int lim)
 int strindex(char s[], char t[])
 {
     int i, j, k;
-    for (i = 0; s[i] != '\0'; i++) {
-        for (j=i, k=0; t[k]!='\0' && s[j]==t[k]; j++, k++)
+    for (i = 0; s[i] != '\0'; i++) {// for each character in the string
+        j = i;
+        k = 0;
+        while (t[k] != '\0' && s[j] == t[k])// while the j'th character in the string is equal to the k'th in target 
         {
-            ;
+            j++;
+            k++;
         }
-        if (k > 0 && t[k] == '\0')
+        if (k > 0 && t[k] == '\0')// if target was found entirely
         {
             return i;
         }
