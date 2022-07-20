@@ -19,3 +19,16 @@ int strIndex(char s[], char c) {
     }
     return -1;
 }
+
+// alternative without string library
+/*
+int strIndex(char s[], char c) {
+    int last = -1;
+    for(int i = 0; s[i] != '\0'; i++) {
+        if(s[i] == c) {
+            last = i;
+        }
+    }
+    return last;
+}
+*/
