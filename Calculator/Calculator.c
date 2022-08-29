@@ -16,7 +16,7 @@
 #define MAX_STACK_SIZE 100
 
 // stack variables
-int stack_index = 0;
+int stackIndex = 0;
 double stack[MAX_STACK_SIZE];
 
 // stack functions
@@ -31,10 +31,10 @@ int numericCheck(int c);
 // pushes n to the top of the stack
 double push(double n)
 {
-    if (stack_index < MAX_STACK_SIZE)
+    if (stackIndex < MAX_STACK_SIZE)
     {
-        stack[stack_index] = n;
-        stack_index++;
+        stack[stackIndex] = n;
+        stackIndex++;
         return n;
     }
     else
@@ -47,10 +47,10 @@ double push(double n)
 // pops and returns the top of the stack
 double pop()
 {
-    if (stack_index > 0)
+    if (stackIndex > 0)
     {
-        stack_index--;
-        return stack[stack_index];
+        stackIndex--;
+        return stack[stackIndex];
     }
     else
     {  
@@ -62,7 +62,7 @@ double pop()
 // resets the stack index
 void empty()
 {
-    stack_index = 0;
+    stackIndex = 0;
 }
 
 int main()
@@ -84,34 +84,42 @@ void nextChar(int c)
 {
     double operandA;
     double operandB;
+    double product;
     switch (c)
     {
     case '+':
         operandA = pop();
         operandB = pop();
-        double product = operandA + operandB;
+        product = operandA + operandB;
         push(product);
         break;
 
     case '-':
         operandA = pop();
         operandB = pop();
-        double product = operandB - operandA;
+        product = operandB - operandA;
         push(product);
         break;
 
     case '*':
         operandA = pop();
         operandB = pop();
-        double product = operandB * operandA;
+        product = operandB * operandA;
         push(product);
         break;
 
     case '/':
         operandA = pop();
-        operandB = pop();
-        double product = operandB / operandA;
-        push(product);
+        if (operandA == 0.0)
+        {
+            printf("Can't divide by 0");
+        }
+        else
+        {
+            operandB = pop();
+            product = operandB / operandA;
+            push(product);
+        }
         break;
 
     case '=':
