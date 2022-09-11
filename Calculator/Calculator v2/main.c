@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "calc.h"
+#include "calculate.h"
 
 #define MAX_OP_SIZE 100
 int main()
@@ -8,21 +8,24 @@ int main()
     int type;
     char s[MAX_OP_SIZE];
     int c;
-    for (int i = 0; (c = getchar()) != '\n'; i++)
+    int i;
+    for (i = 0; (c = getchar()) != '\n'; i++)
     {
         s[i] = c;
     }
+    s[i] = '\0';
     copyInputToBuffer(s);
-
-    printf("%.3f", stringToDouble("4.35"));
-    while((type = getOp(s)) != '\n')
+    double product = 0;
+    while((type = getOp()) != '\0')
     {
+        // if (type - '0' >= 0 && type - '0' <= 9)
+        // {
+        //     push(type - '0')
+        // }
         double operandA;
         double operandB;
-        double product;
         switch (type)
-            switch (c)
-            {
+        {
             case '+':
                 operandA = pop();
                 operandB = pop();
@@ -63,11 +66,12 @@ int main()
                 break;
 
             case NUMBER_FOUND:
-                push(stringToDouble(s));
+                push(stringToDouble());
                 break;
 
             default:
                 break;
-            }
         }
+    }
+    printf("%.2f", product);
 }

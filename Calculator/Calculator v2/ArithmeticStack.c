@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "calc.h"
+#include "calculate.h"
 
 #define MAX_STACK_SIZE 100
 static int stackIndex = 0;
