@@ -14,14 +14,12 @@ int main()
         s[i] = c;
     }
     s[i] = '\0';
+
     copyInputToBuffer(s);
+
     double product = 0;
     while((type = getOp()) != '\0')
     {
-        // if (type - '0' >= 0 && type - '0' <= 9)
-        // {
-        //     push(type - '0')
-        // }
         double operandA;
         double operandB;
         switch (type)
