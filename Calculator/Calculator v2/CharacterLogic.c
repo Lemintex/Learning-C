@@ -3,11 +3,9 @@
 #include "calculate.h"
 
 // gets next operand or operator
-int getOp()
-{
+int getOp() {
     int c = getChar();
-    if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == ' ' || c == '\0' || c == '=')
-    {
+    if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == ' ' || c == '\0' || c == '=') {
         return c;
     }
     ungetChar();
@@ -15,23 +13,19 @@ int getOp()
 }
 
 // converts string in buffer to double and returns it
-double stringToDouble()
-{
+double stringToDouble() {
     double number = 0.0;
     double decimal = 0.0;
     int sign = 0;
-    if (checkSign(getChar()))
-    {
+    if (checkSign(getChar())) {
         sign = -1;
     }
-    else
-    {
+    else {
         ungetChar();
         sign = 1;
     }
     int c;
-    for (c = getChar(); c >= '0' && c <= '9'; c = getChar())
-    {
+    for (c = getChar(); c >= '0' && c <= '9'; c = getChar()) {
         number *= 10;
         number += c - '0';
     }
@@ -49,8 +43,7 @@ double stringToDouble()
     return number * sign;
 }
 
-int checkSign(char c)
-{
+int checkSign(char c) {
     if (c == '-') {
         return 1;
     }

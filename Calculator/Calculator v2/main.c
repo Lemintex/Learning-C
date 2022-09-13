@@ -3,14 +3,12 @@
 #include "calculate.h"
 
 #define MAX_OP_SIZE 100
-int main()
-{
+int main() {
     int type;
     char s[MAX_OP_SIZE];
     int c;
     int i;
-    for (i = 0; (c = getchar()) != '\n'; i++)
-    {
+    for (i = 0; (c = getchar()) != '\n'; i++) {
         s[i] = c;
     }
     s[i] = '\0';
@@ -18,12 +16,10 @@ int main()
     copyInputToBuffer(s);
 
     double product = 0;
-    while((type = getOp()) != '\0')
-    {
+    while((type = getOp()) != '\0') {
         double operandA;
         double operandB;
-        switch (type)
-        {
+        switch (type) {
             case '+':
                 operandA = pop();
                 operandB = pop();
@@ -47,12 +43,10 @@ int main()
 
             case '/':
                 operandA = pop();
-                if (operandA == 0.0)
-                {
+                if (operandA == 0.0) {
                     printf("Can't divide by 0");
                 }
-                else
-                {
+                else {
                     operandB = pop();
                     product = operandB / operandA;
                     push(product);
