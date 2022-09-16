@@ -20,6 +20,6 @@ void concat(char* s, char* t, char* result) {
     while (*t != '\0') {
         *result++ = *t++;
     }
-    
+    *result = '\0';
     
 }
