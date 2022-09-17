@@ -9,7 +9,7 @@ int main() {
 
 int length(char* s) {
     char* p = s;
-    while (*p != '\0') {
+    while (*p) {
         p++;
     }
     return (p-s);
