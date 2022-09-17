@@ -2,22 +2,23 @@
 #include <string.h>
 #include <stdlib.h>
 
-char* strcomp(char* s, char* t);
+char* strappend(const char* s, const char* t);
 
 int main() {
     char* s = "Hello ";
     char* t = "world!";
-    char *result = strcomp(s, t);
+    char* result;
+    result = strappend(s, t);
     printf("%s", result);
 }
 
-char *strcomp(char *s, char *t) {
-    char *result = (char*)malloc((strlen(s) + strlen(t) + 1) * sizeof(char));
-    while (*s) {
-        printf("Hi");
-        *result++ = *s++;
+char* strappend(const char* s, const char* t) {
+    char* result;
+    int n = 0;
+    result = (char*)malloc((strlen(s) + strlen(t) + 1) * sizeof(char));
+    for(; *s; n++, s++) {
+        *(result+n) = *s;
     }
-    while (*result++ = *t++);
-    *result = '\0';
+    for(;*(result+n) = *t; t++, n++);
     return result;
 }
