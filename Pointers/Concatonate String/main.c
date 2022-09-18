@@ -1,25 +1,24 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-#define MAX_LENGTH 100
-
-void concat(char* s, char* t, char* result);
+char* strappend(const char* s, const char* t);
 
 int main() {
-    char s[] = "hello";
-    char t[] = " world";
-    char result[MAX_LENGTH];
-    concat(s, t, result);
-
+    char* s = "Hello ";
+    char* t = "world!";
+    char* result;
+    result = strappend(s, t);
     printf("%s", result);
 }
 
-void concat(char* s, char* t, char* result) {
-    while (*s != '\0') {
-        *result++ = *s++;
+char* strappend(const char* s, const char* t) {
+    char* result;
+    int n = 0;
+    result = (char*)malloc((strlen(s) + strlen(t) + 1) * sizeof(char));
+    for(; *s; n++, s++) {
+        *(result+n) = *s;
     }
-    while (*t != '\0') {
-        *result++ = *t++;
-    }
-    *result = '\0';
-    
+    for(;*(result+n) = *t; t++, n++);
+    return result;
 }
