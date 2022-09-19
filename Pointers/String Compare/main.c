@@ -12,8 +12,8 @@ int main() {
 int strcompare(char* s, char* t) {
     int i = 0;
     while (*(s+i) == *(t+i)) {
+        if (!*(s + i)) return 0;
         i++;
-        if (!*(s + i) && !*(t + i)) return 0;
     }
     return (*(s+i) - *(t + i));
 }
