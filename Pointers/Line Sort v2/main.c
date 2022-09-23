@@ -4,11 +4,18 @@
 
 #define LINES 20
 #define MAX_LENGTH 50
-void storeinput(char* input);
-int readlines(const char input[], char* lines[], int sizes[]);
-int getline(const char input[], int* character, char** line, int* size);
-void sortlines(char* lines[], int n);
-void printlines(char* lines[], int sizes[], int n);
+
+void storeinput(char *input);
+int readlines(const char input[], char *lines[], int sizes[]);
+int getline(const char input[], int *character, char **line, int *size);
+void sortlines(char *lines[], int n);
+void printlines(char *lines[], int sizes[], int n);
+
+void printlines(char *lines[], int sizes[], int n) {
+	for (int i = 0; i < n; ++i) {
+		printf("String %d: %.*s\n", i + 1, sizes[i], lines[i]);
+	}
+}
 
 // because VScode uses '/n' for end of input, I'll use '|' for line seperator
 int main() {
@@ -23,7 +30,7 @@ int main() {
     }
 }
 
-void storeinput(char* input) {
+void storeinput(char *input) {
     char c;
     int i;
     for (i = 0; (c = getchar()) != '\n'; i++) {
@@ -32,7 +39,7 @@ void storeinput(char* input) {
     input[i] = '\0';
 }
 
-int readlines(const char input[], char* lines[], int sizes[]) {
+int readlines(const char input[], char *lines[], int sizes[]) {
     int character = 0;
     int n = 0;
     int lastline;
@@ -45,37 +52,18 @@ int readlines(const char input[], char* lines[], int sizes[]) {
 }
 
 
-int getline(const char input[], int* character, char** start, int* size) {
+int getline(const char input[], int *character, char **start, int *size) {
     *size = 0;
-    char c;
+
     while (input[*character] != '|') {
         if (*size == 0) {
-            *start = (char*) &input[*character];
+            *start = (char *) &(input[*character]);
         }
         *character += 1;
-        if (!input[*character]) return 0;
         *size += 1;
+        if (!input[*character]) return 0;
     }
+
     *character += 1;
-    return 1;
-}
-
-void sortlines(char* lines[], int n) {
-    char* temp;
-    for (int gap = n / 2; gap > 0; gap /= 2) {
-        for (int i = gap; i < n; i++) {
-            for (int j = i - gap; j >= 0; j -= gap) {
-                if (strcmp(lines[j], lines[j + gap]) <= 0) break;
-                temp = lines[j];
-                lines[j] = lines[j + gap];
-                lines[j + gap] = temp;
-            }
-        }
-    }
-}
-
-void printlines(char* lines[], int sizes[], int n) {
-    for (int i = 0; i <= n; i++) {
-        printf("Line %d: %.*s\n", i+1, sizes[i], lines[i]);
-    }
+    return 1;|
 }
