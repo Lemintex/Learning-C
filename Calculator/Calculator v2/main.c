@@ -3,6 +3,7 @@
 #include "calculate.h"
 
 #define MAX_OP_SIZE 100
+
 int main() {
     int type;
     char s[MAX_OP_SIZE];
@@ -13,9 +14,12 @@ int main() {
     }
     s[i] = '\0';
 
+    // puts the input in the buffer
     copyInputToBuffer(s);
 
     double product = 0;
+
+    // handle elements in the order needed
     while((type = getOp()) != '\0') {
         double operandA;
         double operandB;
@@ -65,5 +69,6 @@ int main() {
                 break;
         }
     }
-    printf("%.2f", product);
+    // print the result
+    printf("Answer: %.2f", product);
 }
