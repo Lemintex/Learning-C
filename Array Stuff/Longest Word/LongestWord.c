@@ -10,6 +10,7 @@ void copyWord(char to[], char wordToCopy[], int wordLength);
 /*
     prints the longest word in a sentence
     bug if final word is the biggest and followed by '\n'
+    TODO: fix if possible
 */
 
 int main() {
