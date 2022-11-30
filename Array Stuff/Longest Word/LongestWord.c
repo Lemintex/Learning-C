@@ -22,7 +22,7 @@ int main() {
     char c;
     int currentWordLength = 0;
     printf("ENTER\n");
-    while ((c = getchar()) != '\n') {
+    while (c = getchar()) {
         switch (state) {
         case OUT:
             if (c != ' ' && c != '\t') {
@@ -51,13 +51,7 @@ int main() {
         default:
             break;
         }
-    }
-
-    // FIXES ISSUE
-
-    if (currentWordLength > longestWordLength) {
-        copyWord(longestWord, currentWord, currentWordLength);
-        longestWordLength = currentWordLength;
+        if (c=='\n') break;
     }
 
     printf("Length: %d Word: %s", longestWordLength, longestWord);
