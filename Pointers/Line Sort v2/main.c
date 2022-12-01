@@ -49,7 +49,6 @@ int readlines(char input[], char *lines[], int sizes[]) {
 
 int getline(char input[], int *character, char **start, int *size) {
     *size = 0;
-
     while (input[*character] != '|') {
         if (*size == 0) {
             *start = (char *) &(input[*character]);
