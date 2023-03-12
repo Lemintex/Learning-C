@@ -1,5 +1,6 @@
 #ifndef _ARRAY_H_
 #define  _ARRAY_H_
+
 #include <stdlib.h>
 #include <time.h>
 
@@ -18,4 +19,5 @@ int Get_array_t(array_t* self, size_t index);
 void Set_array_t(array_t* self, size_t index, int value);
 
 array_t* make_array(size_t capacity);
+
 #endif
