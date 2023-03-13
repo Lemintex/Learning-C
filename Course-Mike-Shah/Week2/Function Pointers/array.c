@@ -20,3 +20,8 @@ array_t* make_array(size_t capacity) {
 
 	return newArray;
 }
+
+void delete_array(array_t *self){
+	free(self->data);
+	free(self);
+}

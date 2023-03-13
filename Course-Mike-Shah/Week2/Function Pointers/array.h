@@ -20,4 +20,6 @@ void Set_array_t(array_t* self, size_t index, int value);
 
 array_t* make_array(size_t capacity);
 
+void delete_array(array_t* self);
+
 #endif

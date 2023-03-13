@@ -11,6 +11,7 @@ int main() {
 	for (int i = 0; i < 10; i++) {
 		printf("%d\n", array->pfnGet(array->self, i));
 	}
-
+	
+	delete_array(array);
 	return 0;
 }
